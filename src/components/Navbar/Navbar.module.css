@@ -1,0 +1,35 @@
+.navBar {
+    background: #FFFFFF;
+}
+
+.navContainer {
+    margin: 0 auto;
+    width: 960px;
+    display: flex;
+    align-items: center;
+}
+
+.logoImg {
+    width: 90px;
+}
+
+.logoImg img {
+    max-width: 100%;
+}
+
+.navList {
+    display: flex;
+}
+
+.logoImg {
+    margin-right: 30px;
+
+}
+
+.navList li a {
+    display: block;
+    padding: 20px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #000000;
+}
