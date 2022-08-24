@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './House.module.css'
+import { Link } from 'react-router-dom'
 
 const House = (props) => {
     console.log(props)
@@ -35,6 +36,7 @@ const House = (props) => {
                     <li>{bathrooms}</li>
                     <li>{size} m2</li>
                 </ul>
+                <Link to={`/houses/${id}`}>learn more</Link>
             </div>
         </article>
     )

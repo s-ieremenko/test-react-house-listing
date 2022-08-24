@@ -1,9 +1,11 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useContext } from 'react'
 import styles from './HouseList.module.css'
 import SearchBar from '../SearchBar/SearchBar'
 import { useFetch } from '../../hooks/useFetching'
 import House from '../House/House'
 import emptyHouses from '../../images/img_empty_houses@3x.png'
+import { ReactComponent as DescOrder } from '../../images/sort-desc.svg'
+import { ReactComponent as AscOrder } from '../../images/sort-asc.svg'
 
 const HouseList = () => {
     const url = `https://api.intern.d-tt.nl/api/houses`
@@ -16,31 +18,26 @@ const HouseList = () => {
         headers
     )
     const [searchQuery, setSearchQuery] = useState('')
-    const [sortField, setSortField] = useState('')
-    const [sortType, setSortType] = useState('none')
+    const [sortField, setSortField] = useState('price')
+    const [sortType, setSortType] = useState('asc')
 
     const sortList = (value) => {
-        if (sortType === 'none') {
-            return houses
-        }
         const sortedList = [...houses].sort((a, b) => {
             return sortType === 'desc'
                 ? b[value] - a[value]
                 : a[value] - b[value]
         })
 
-        console.log('sortedList', sortedList)
         return sortedList
     }
-    const sortedHouses = useMemo(
-        () => sortList(sortField),
-        [houses, sortType]
-    )
+    const sortedHouses = useMemo(() => {
+        console.log('useMemo')
+        return sortList(sortField)
+    }, [houses, sortType, sortField])
 
     const sortedAndFilteredHouses = useMemo(() => {
         if (searchQuery) {
             return sortedHouses.filter((house) => {
-                console.log('loc city', house.location.street)
                 return (
                     house.location.street
                         .toLowerCase()
@@ -56,17 +53,11 @@ const HouseList = () => {
     }, [searchQuery, sortedHouses])
 
     const handleOnClick = (value) => {
-        if (sortType === 'none') {
-            setSortType('asc')
-        } else {
-            setSortType((prevState) => {
-                return prevState === 'asc' ? 'desc' : 'asc'
-            })
-        }
+        setSortType((prevState) => {
+            return prevState === 'asc' ? 'desc' : 'asc'
+        })
         setSortField(value)
     }
-
-    console.log(sortedHouses)
 
     return (
         <main>
@@ -82,12 +73,30 @@ const HouseList = () => {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                 />
-                <button onClick={() => handleOnClick('price')}>
-                    price
+                <button
+                    className={styles.ascOrder}
+                    onClick={() => handleOnClick('price')}
+                >
+                    <span>price</span>{' '}
+                    {sortType === 'asc' && sortField === 'price' ? (
+                        <AscOrder />
+                    ) : (
+                        <DescOrder />
+                    )}
                 </button>
-                <button onClick={() => handleOnClick('size')}>
-                    size
+
+                <button
+                    className={styles.ascOrder}
+                    onClick={() => handleOnClick('size')}
+                >
+                    <span>size</span>{' '}
+                    {sortType === 'asc' && sortField === 'size' ? (
+                        <AscOrder />
+                    ) : (
+                        <DescOrder />
+                    )}
                 </button>
+
                 <section>
                     {sortedAndFilteredHouses.length ? (
                         sortedAndFilteredHouses.map((house) => {

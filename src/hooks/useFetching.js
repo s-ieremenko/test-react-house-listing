@@ -9,7 +9,6 @@ export const useFetch = (url, headers) => {
         try {
             const response = await fetch(url, { headers })
             const houses = await response.json()
-            console.log('houses', houses)
             setHouses(houses)
         } catch (e) {
             setError(e.message)

@@ -57,3 +57,18 @@ form {
 .noResultsText p {
     padding: 5px;
 }
+
+.ascOrder {
+    position: relative;
+    padding-right: 25px;
+}
+
+.ascOrder svg {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
