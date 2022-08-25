@@ -19,6 +19,6 @@ export const useFetch = (url, headers) => {
 
     useEffect(() => {
         getHouses()
-    }, [url, getHouses])
+    }, [getHouses])
     return [getHouses, isLoading, error, houses]
 }

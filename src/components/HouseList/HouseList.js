@@ -6,17 +6,19 @@ import House from '../House/House'
 import emptyHouses from '../../images/img_empty_houses@3x.png'
 import { ReactComponent as DescOrder } from '../../images/sort-desc.svg'
 import { ReactComponent as AscOrder } from '../../images/sort-asc.svg'
+import { useGlobalContext } from '../../context'
 
 const HouseList = () => {
-    const url = `https://api.intern.d-tt.nl/api/houses`
-    const headers = {
-        'X-Api-Key': process.env.REACT_APP_API_KEY,
-        'Content-Type': 'application/json',
-    }
-    const [fetchHouses, isLoading, error, houses] = useFetch(
-        url,
-        headers
-    )
+    // const url = `https://api.intern.d-tt.nl/api/houses`
+    // const headers = {
+    //     'X-Api-Key': process.env.REACT_APP_API_KEY,
+    //     'Content-Type': 'application/json',
+    // }
+    // const [fetchHouses, isLoading, error, houses] = useFetch(
+    //     url,
+    //     headers
+    // )
+    const { houses } = useGlobalContext()
     const [searchQuery, setSearchQuery] = useState('')
     const [sortField, setSortField] = useState('price')
     const [sortType, setSortType] = useState('asc')
@@ -37,15 +39,27 @@ const HouseList = () => {
 
     const sortedAndFilteredHouses = useMemo(() => {
         if (searchQuery) {
+            const fields = ['city', 'street']
             return sortedHouses.filter((house) => {
-                return (
-                    house.location.street
-                        .toLowerCase()
-                        .includes(searchQuery) ||
-                    house.location.city
-                        .toLowerCase()
-                        .includes(searchQuery)
-                )
+                for (let i = 0; i < fields.length; i++) {
+                    if (
+                        house.location[fields[i]]
+                            .toLowerCase()
+                            .includes(searchQuery.toLowerCase())
+                    ) {
+                        return true
+                    }
+                }
+                return false
+
+                // return (
+                //     house.location.street
+                //         .toLowerCase()
+                //         .includes(searchQuery.toLowerCase()) ||
+                //     house.location.city
+                //         .toLowerCase()
+                //         .includes(searchQuery.toLowerCase())
+                // )
             })
         } else {
             return sortedHouses
