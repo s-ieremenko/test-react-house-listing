@@ -3,19 +3,20 @@ import styles from './House.module.css'
 import { Link } from 'react-router-dom'
 
 const House = (props) => {
-    console.log(props)
     const {
-        id,
-        constructionYear,
-        createdAt,
-        description,
-        hasGarage,
-        image,
-        location: { street, city, zip },
-        madeByMe,
-        price,
-        rooms: { bedrooms, bathrooms },
-        size,
+        house: {
+            id,
+            constructionYear,
+            createdAt,
+            description,
+            hasGarage,
+            image,
+            location: { street, city, zip },
+            madeByMe,
+            price,
+            rooms: { bedrooms, bathrooms },
+            size,
+        },
     } = props
 
     const formattedPrice = `€ ${Number(price).toLocaleString(
@@ -24,9 +25,13 @@ const House = (props) => {
 
     return (
         <article className={styles.houseContainer}>
-            <img src={image} alt="house" />
+            <Link to={`/houses/${id}`}>
+                <img src={image} alt="house" />
+            </Link>
             <div>
-                <p className={styles.address}>{street}</p>
+                <Link to={`/houses/${id}`}>
+                    <p className={styles.address}>{street}</p>
+                </Link>
                 <p className={styles.price}>{formattedPrice}</p>
                 <p>
                     {zip} {city}
@@ -36,7 +41,6 @@ const House = (props) => {
                     <li>{bathrooms}</li>
                     <li>{size} m2</li>
                 </ul>
-                <Link to={`/houses/${id}`}>learn more</Link>
             </div>
         </article>
     )

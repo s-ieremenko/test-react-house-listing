@@ -55,3 +55,7 @@
 .facilities li:last-child:before {
     background-image: url("../../images/ic_size@3x.png");
 }
+
+.houseContainer a {
+    text-decoration: none;
+}

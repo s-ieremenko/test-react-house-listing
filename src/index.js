@@ -8,6 +8,7 @@ import HouseList from './components/HouseList/HouseList'
 import About from './components/About/About'
 import HousePage from './components/HousePage/HousePage'
 import { AppProvider } from './context'
+import MainPage from './components/MainPage/MainPage'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
@@ -18,7 +19,7 @@ root.render(
                     <Route path="/" exact element={<App />}></Route>
                     <Route
                         path="/houses"
-                        element={<HouseList />}
+                        element={<MainPage />}
                     ></Route>
                     <Route path="/about" element={<About />}></Route>
                     <Route

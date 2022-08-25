@@ -1,2 +1,3 @@
-Made with React, the app shows all the available houses, a user can search listings by location and sort by price and
-size. Also, a user can get a detailed info about a chosen house, post, edit and delete their own listings
+A web application for house listings, which allows the user to
+view a list of houses that are currently available for sale (with sorting and searching options), and create, edit and
+delete their own listings

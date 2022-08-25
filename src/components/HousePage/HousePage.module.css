@@ -1,0 +1,32 @@
+.container {
+    margin: 0 auto;
+    width: 960px;
+    position: relative;
+}
+
+.houseDetails p:last-child {
+    position: relative;
+}
+
+.backToArrow a {
+    text-decoration: none;
+    display: block;
+    padding-left: 20px;
+    position: relative;
+}
+
+.backToArrow a:before {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    background-image: url("../../images/ic_back_grey@3x.png");
+    background-size: contain;
+}
+
+.houseDetails img {
+    width: 300px;
+}

@@ -33,7 +33,6 @@ const HouseList = () => {
         return sortedList
     }
     const sortedHouses = useMemo(() => {
-        console.log('useMemo')
         return sortList(sortField)
     }, [houses, sortType, sortField])
 
@@ -51,15 +50,6 @@ const HouseList = () => {
                     }
                 }
                 return false
-
-                // return (
-                //     house.location.street
-                //         .toLowerCase()
-                //         .includes(searchQuery.toLowerCase()) ||
-                //     house.location.city
-                //         .toLowerCase()
-                //         .includes(searchQuery.toLowerCase())
-                // )
             })
         } else {
             return sortedHouses
@@ -112,9 +102,18 @@ const HouseList = () => {
                 </button>
 
                 <section>
+                    {searchQuery &&
+                        !!sortedAndFilteredHouses.length && (
+                            <p className={styles.resultsAmount}>
+                                {sortedAndFilteredHouses.length}{' '}
+                                results found
+                            </p>
+                        )}
                     {sortedAndFilteredHouses.length ? (
                         sortedAndFilteredHouses.map((house) => {
-                            return <House key={house.id} {...house} />
+                            return (
+                                <House key={house.id} house={house} />
+                            )
                         })
                     ) : (
                         <div className={styles.noResults}>
