@@ -53,3 +53,7 @@ table {
     display: block;
     clear: both;
 }
+
+body {
+    background: #F6F6F6;
+}

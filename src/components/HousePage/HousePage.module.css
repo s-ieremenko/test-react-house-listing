@@ -4,29 +4,74 @@
     position: relative;
 }
 
-.houseDetails p:last-child {
-    position: relative;
+.descriptionContainer {
+    background: #FFFFFF;
+    width: 60%;
 }
 
-.backToArrow a {
-    text-decoration: none;
-    display: block;
-    padding-left: 20px;
-    position: relative;
+.descriptionContainer p, .facilities, .moreFacilities {
+    margin: 10px 0;
 }
 
-.backToArrow a:before {
+.descriptionDetails {
+    padding: 20px;
+}
+
+.descriptionText {
+    line-height: 1.5;
+}
+
+
+.houseDetails img {
+    width: 100%;
+}
+
+.facilities, .moreFacilities {
+    display: flex;
+}
+
+.facilities li, .moreFacilities li, .address {
+    position: relative;
+    padding: 5px 5px 5px 20px;
+    margin-right: 10px;
+}
+
+.facilities li:before, .address:before, .moreFacilities li:before {
     content: "";
-    position: absolute;
     width: 15px;
     height: 15px;
+    background: no-repeat 0 / contain;
+    position: absolute;
     top: 50%;
     left: 0;
     transform: translateY(-50%);
-    background-image: url("../../images/ic_back_grey@3x.png");
-    background-size: contain;
 }
 
-.houseDetails img {
-    width: 300px;
+.facilities li:first-child:before {
+    background-image: url("../../images/ic_price@3x.png");
+}
+
+.facilities li + li:before {
+    background-image: url("../../images/ic_size@3x.png");
+}
+
+.facilities li:last-child:before {
+    background-image: url("../../images/ic_construction_date@3x.png");
+}
+
+
+.address:before {
+    background-image: url("../../images/ic_location@3x.png");
+}
+
+.moreFacilities li:before {
+    background-image: url("../../images/ic_bed@3x.png");
+}
+
+.moreFacilities li + li:before {
+    background-image: url("../../images/ic_bath@3x.png");
+}
+
+.moreFacilities li:last-child:before {
+    background-image: url("../../images/ic_garage@3x.png");
 }

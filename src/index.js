@@ -9,6 +9,7 @@ import About from './components/About/About'
 import HousePage from './components/HousePage/HousePage'
 import { AppProvider } from './context'
 import MainPage from './components/MainPage/MainPage'
+import CreateListing from './components/CreateListing/CreateListing'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
@@ -26,6 +27,11 @@ root.render(
                         exact
                         path="/houses/:id"
                         element={<HousePage />}
+                    ></Route>
+                    <Route
+                        exact
+                        path="/houses/create"
+                        element={<CreateListing />}
                     ></Route>
                 </Routes>
             </BrowserRouter>

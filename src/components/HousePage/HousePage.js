@@ -4,6 +4,7 @@ import { useGlobalContext } from '../../context'
 import styles from './HousePage.module.css'
 import Navbar from '../Navbar/Navbar'
 import House from '../House/House'
+import BackToOverview from '../BackToOverwiev/BackToOverview'
 
 const HousePage = () => {
     const { houses } = useGlobalContext()
@@ -28,18 +29,61 @@ const HousePage = () => {
             rooms: { bedrooms, bathrooms },
             size,
         } = house
+        console.log(house)
+        const formattedPrice = `${Number(price).toLocaleString(
+            'es-ES'
+        )}`
         return (
             <>
                 <Navbar />
                 <div className={styles.container}>
                     {house ? (
                         <div className={styles.houseDetails}>
-                            <House house={house} />
-                            <p className={styles.backToArrow}>
-                                <Link to="/houses">
-                                    Back to overview
-                                </Link>
-                            </p>
+                            <BackToOverview />
+                            <input type="file" />
+                            <div
+                                className={
+                                    styles.descriptionContainer
+                                }
+                            >
+                                <img src={image} alt={street} />
+                                <div
+                                    className={
+                                        styles.descriptionDetails
+                                    }
+                                >
+                                    <p>{street}</p>
+                                    <p className={styles.address}>
+                                        {zip} {city}
+                                    </p>
+                                    <ul className={styles.facilities}>
+                                        <li>{formattedPrice}</li>
+                                        <li>{size} m2</li>
+                                        <li>
+                                            Built in{' '}
+                                            {constructionYear}{' '}
+                                        </li>
+                                    </ul>
+                                    <ul
+                                        className={
+                                            styles.moreFacilities
+                                        }
+                                    >
+                                        <li>{bedrooms}</li>
+                                        <li>{bathrooms} m2</li>
+                                        <li>
+                                            {hasGarage ? 'Yes' : 'No'}{' '}
+                                        </li>
+                                    </ul>
+                                    <p
+                                        className={
+                                            styles.descriptionText
+                                        }
+                                    >
+                                        {description}
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     ) : (
                         <div>...Loading</div>
@@ -49,21 +93,6 @@ const HousePage = () => {
         )
     }
     return <div>...Loading</div>
-
-    // if (house) {
-    //     return (
-    //         <div>
-    //             <p>{house.description}</p>
-    //             <p>{house.image}</p>
-    //             <p>{house.location.city}</p>
-    //             <Link to="/houses">back home</Link>
-    //         </div>
-    //     )
-    // }else {
-    //     return <div>
-    //         ...Loading
-    //     </div>
-    // }
 }
 
 export default HousePage

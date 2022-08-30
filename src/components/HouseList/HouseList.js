@@ -7,6 +7,7 @@ import emptyHouses from '../../images/img_empty_houses@3x.png'
 import { ReactComponent as DescOrder } from '../../images/sort-desc.svg'
 import { ReactComponent as AscOrder } from '../../images/sort-asc.svg'
 import { useGlobalContext } from '../../context'
+import { Link } from 'react-router-dom'
 
 const HouseList = () => {
     // const url = `https://api.intern.d-tt.nl/api/houses`
@@ -62,21 +63,33 @@ const HouseList = () => {
         })
         setSortField(value)
     }
+    console.log(sortedAndFilteredHouses)
 
     return (
         <main>
             <div className={styles.container}>
                 <header>
                     <h2>Houses</h2>
-                    <button>create new</button>
+                    <Link to="/houses/create">Create new</Link>
                 </header>
                 {/*<SearchBar />*/}
-                <input
-                    type="search"
-                    placeholder="search for a house"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                />
+                <form>
+                    <input
+                        type="text"
+                        placeholder="search for a house"
+                        value={searchQuery}
+                        onChange={(e) =>
+                            setSearchQuery(e.target.value)
+                        }
+                    />
+                    <button
+                        type="button"
+                        onClick={() => setSearchQuery('')}
+                    >
+                        &times;
+                    </button>
+                </form>
+
                 <button
                     className={styles.ascOrder}
                     onClick={() => handleOnClick('price')}

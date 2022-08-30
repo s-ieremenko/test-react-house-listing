@@ -1,0 +1,30 @@
+.containerFluid {
+    background: url("../../images/img_background@3x.png") no-repeat 100% / contain;
+
+}
+
+.container {
+    margin: 0 auto;
+    width: 960px;
+    position: relative;
+
+}
+
+
+.createForm {
+    width: 300px
+}
+
+.formControl label {
+    display: block;
+}
+
+
+.createButton {
+
+}
+
+.createForm input {
+    margin: 10px 0;
+    width: 100%;
+}

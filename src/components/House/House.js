@@ -1,8 +1,10 @@
 import React from 'react'
 import styles from './House.module.css'
 import { Link } from 'react-router-dom'
+import NoImage from '../../images/no-image.jpg'
 
 const House = (props) => {
+    console.log(props)
     const {
         house: {
             id,
@@ -26,7 +28,15 @@ const House = (props) => {
     return (
         <article className={styles.houseContainer}>
             <Link to={`/houses/${id}`}>
-                <img src={image} alt="house" />
+                {image ? (
+                    <img src={image} alt="house" />
+                ) : (
+                    <img
+                        className={styles.noImage}
+                        src={NoImage}
+                        alt="no-image"
+                    />
+                )}
             </Link>
             <div>
                 <Link to={`/houses/${id}`}>
