@@ -1,4 +1,9 @@
-import React, { useState, useMemo, useContext } from 'react'
+import React, {
+    useState,
+    useMemo,
+    useContext,
+    useEffect,
+} from 'react'
 import styles from './HouseList.module.css'
 import SearchBar from '../SearchBar/SearchBar'
 import { useFetch } from '../../hooks/useFetching'

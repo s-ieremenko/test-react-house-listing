@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import styles from './CreateListing.module.css'
 import BackToOverview from '../BackToOverwiev/BackToOverview'
 import Navbar from '../Navbar/Navbar'
+import { useFetch } from '../../hooks/useFetching'
+import HouseService from '../../API/Api'
 
 const CreateListing = () => {
     const [listing, setListing] = useState({
@@ -19,6 +21,28 @@ const CreateListing = () => {
         city: '',
     })
     const [file, setFile] = useState('')
+    const url = 'https://api.intern.d-tt.nl/api/houses'
+
+    const body = JSON.stringify({
+        ...listing,
+        hasGarage: listing.hasGarage === 'true',
+        constructionYear: listing.constructionYear.split('/')[2],
+    })
+    const headers = {
+        'X-Api-Key': process.env.REACT_APP_API_KEY,
+        'Content-Type': 'application/json',
+    }
+
+    const [createHouse, isCreateLoading, isCreateError] = useFetch(
+        async () => {
+            return await HouseService.createHouse(
+                url,
+                headers,
+                body,
+                'POST'
+            )
+        }
+    )
 
     const {
         constructionYear,
@@ -52,29 +76,30 @@ const CreateListing = () => {
     const handleSubmit = async (event) => {
         event.preventDefault()
         try {
-            let res = await fetch(
-                'https://api.intern.d-tt.nl/api/houses',
-                {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        ...listing,
-                        hasGarage: listing.hasGarage === 'true',
-                        constructionYear:
-                            listing.constructionYear.split('/')[2],
-                    }),
-                    headers: {
-                        'X-Api-Key': process.env.REACT_APP_API_KEY,
-                        'Content-Type': 'application/json',
-                    },
-                }
-            )
-            let resJson = await res.json()
+            // let res = await fetch(
+            //     'https://api.intern.d-tt.nl/api/houses',
+            //     {
+            //         method: 'POST',
+            //         body: JSON.stringify({
+            //             ...listing,
+            //             hasGarage: listing.hasGarage === 'true',
+            //             constructionYear:
+            //                 listing.constructionYear.split('/')[2],
+            //         }),
+            //         headers: {
+            //             'X-Api-Key': process.env.REACT_APP_API_KEY,
+            //             'Content-Type': 'application/json',
+            //         },
+            //     }
+            // )
+            // let resJson = await res.json()
+            const newHouse = await createHouse()
 
             const formData = new FormData()
             formData.append('image', file, file.name)
 
             await fetch(
-                `https://api.intern.d-tt.nl/api/houses/${resJson.id}/upload`,
+                `https://api.intern.d-tt.nl/api/houses/${newHouse.id}/upload`,
                 {
                     method: 'POST',
                     body: formData,
