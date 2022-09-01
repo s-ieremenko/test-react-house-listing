@@ -68,56 +68,65 @@ const HouseList = () => {
         })
         setSortField(value)
     }
-    console.log(sortedAndFilteredHouses)
 
     return (
         <main>
             <div className={styles.container}>
                 <header>
                     <h2>Houses</h2>
-                    <Link to="/houses/create">Create new</Link>
+                    <div className={styles.createButton}>
+                        <Link to="/houses/create">Create new</Link>
+                    </div>
                 </header>
-                {/*<SearchBar />*/}
-                <form>
-                    <input
-                        type="text"
-                        placeholder="search for a house"
-                        value={searchQuery}
-                        onChange={(e) =>
-                            setSearchQuery(e.target.value)
-                        }
+                <div className={styles.searchContainer}>
+                    <SearchBar
+                        searchQuery={searchQuery}
+                        setSearchQuery={setSearchQuery}
                     />
-                    <button
-                        type="button"
-                        onClick={() => setSearchQuery('')}
-                    >
-                        &times;
-                    </button>
-                </form>
+                    {/*<form>*/}
+                    {/*    <input*/}
+                    {/*        type="text"*/}
+                    {/*        placeholder="search for a house"*/}
+                    {/*        value={searchQuery}*/}
+                    {/*        onChange={(e) =>*/}
+                    {/*            setSearchQuery(e.target.value)*/}
+                    {/*        }*/}
+                    {/*    />*/}
+                    {/*    <button*/}
+                    {/*        type="button"*/}
+                    {/*        onClick={() => setSearchQuery('')}*/}
+                    {/*    >*/}
+                    {/*        &times;*/}
+                    {/*    </button>*/}
+                    {/*</form>*/}
+                    <div>
+                        <button
+                            className={styles.ascOrder}
+                            onClick={() => handleOnClick('price')}
+                        >
+                            <span>price</span>{' '}
+                            {sortType === 'asc' &&
+                            sortField === 'price' ? (
+                                <AscOrder />
+                            ) : (
+                                <DescOrder />
+                            )}
+                        </button>
 
-                <button
-                    className={styles.ascOrder}
-                    onClick={() => handleOnClick('price')}
-                >
-                    <span>price</span>{' '}
-                    {sortType === 'asc' && sortField === 'price' ? (
-                        <AscOrder />
-                    ) : (
-                        <DescOrder />
-                    )}
-                </button>
-
-                <button
-                    className={styles.ascOrder}
-                    onClick={() => handleOnClick('size')}
-                >
-                    <span>size</span>{' '}
-                    {sortType === 'asc' && sortField === 'size' ? (
-                        <AscOrder />
-                    ) : (
-                        <DescOrder />
-                    )}
-                </button>
+                        <button
+                            className={styles.ascOrder}
+                            onClick={() => handleOnClick('size')}
+                        >
+                            <span>size</span>{' '}
+                            {sortType === 'asc' &&
+                            sortField === 'size' ? (
+                                <AscOrder />
+                            ) : (
+                                <DescOrder />
+                            )}
+                        </button>
+                    </div>
+                </div>
 
                 <section>
                     {searchQuery &&

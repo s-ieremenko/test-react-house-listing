@@ -56,4 +56,7 @@ table {
 
 body {
     background: #F6F6F6;
+    overflow: scroll;
 }
+
+

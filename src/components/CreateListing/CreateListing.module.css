@@ -21,10 +21,18 @@
 
 
 .createButton {
-
+    cursor: pointer;
 }
 
-.createForm input {
+.inputField {
     margin: 10px 0;
     width: 100%;
+}
+
+.error {
+    color: red
+}
+
+.errorInput {
+    border: 1px solid red
 }

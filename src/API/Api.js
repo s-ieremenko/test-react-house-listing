@@ -7,14 +7,24 @@ export default class HouseService {
     static async createHouse(url, headers, body, method) {
         const res = await fetch(url, { headers, body, method })
         const resJson = await res.json()
-        console.log('create', resJson)
         return resJson
     }
 
-    static async uploadImage(url, headers, body, method, file, id) {
+    static async uploadImage(id, url, headers, body, method, file) {
         const formData = new FormData()
         formData.append('image', file, file.name)
-        const response = await fetch(url, { headers, body, method })
+        await fetch(`${url}/${id}/upload`, {
+            headers,
+            body: formData,
+            method,
+        })
+    }
+
+    static async deleteHouse(id, url, headers, method) {
+        await fetch(`${url}/${id}`, {
+            headers,
+            method,
+        })
     }
 }
 // try {

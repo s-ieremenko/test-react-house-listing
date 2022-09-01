@@ -8,8 +8,19 @@
 header {
     display: flex;
     justify-content: space-between;
+    margin: 10px 0;
 }
 
+header h2 {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.searchContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 .searchField {
     width: 30%;
@@ -71,38 +82,17 @@ header {
     margin-top: 15px;
 }
 
-form {
-    position: relative;
-    width: 200px;
+.createButton {
+    background: red;
+    border-radius: 3px;
+
 }
 
-form input {
-    width: 100%;
-    padding-right: 20px;
-    box-sizing: border-box;
-}
-
-form input:placeholder-shown + button {
-    opacity: 0;
-    pointer-events: none;
-}
-
-form button {
-    position: absolute;
-    border: none;
+.createButton a {
+    color: #FFFFFF;
+    text-decoration: none;
     display: block;
-    width: 15px;
-    height: 15px;
-    line-height: 16px;
-    font-size: 12px;
-    border-radius: 50%;
-    top: 0;
-    bottom: 0;
-    right: 5px;
-    margin: auto;
-    background: #ddd;
-    padding: 0;
-    outline: none;
-    cursor: pointer;
-    transition: .1s;
+    padding: 5px 10px;
+    text-transform: uppercase;
 }
+

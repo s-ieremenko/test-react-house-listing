@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './House.module.css'
 import { Link } from 'react-router-dom'
 import NoImage from '../../images/no-image.jpg'
+import EditButtons from '../EditButtons/EditButtons'
+import Modal from '../Modal/Modal'
 
 const House = (props) => {
-    console.log(props)
+    const [isModalOpen, setIsModalOpen] = useState(false)
     const {
         house: {
             id,
@@ -51,6 +53,15 @@ const House = (props) => {
                     <li>{bathrooms}</li>
                     <li>{size} m2</li>
                 </ul>
+                {madeByMe && (
+                    <EditButtons
+                        setIsModalOpen={setIsModalOpen}
+                        id={id}
+                    />
+                )}
+                {isModalOpen && (
+                    <Modal id={+id} setIsModalOpen={setIsModalOpen} />
+                )}
             </div>
         </article>
     )

@@ -5,19 +5,19 @@ export const useFetch = (callback) => {
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState('')
 
-    const fetching = useCallback(async () => {
-        try {
-            // const response = await fetch(url, { headers })
-            // const houses = await response.json()
-            // setHouses(houses)
-            setIsLoading(true)
-            return await callback()
-        } catch (e) {
-            setError(e.message)
-        } finally {
-            setIsLoading(false)
-        }
-    }, [callback])
+    const fetching = useCallback(
+        async (id) => {
+            try {
+                setIsLoading(true)
+                return await callback(id)
+            } catch (e) {
+                setError(e.message)
+            } finally {
+                setIsLoading(false)
+            }
+        },
+        [callback]
+    )
     //
     // useEffect(() => {
     //     getHouses()

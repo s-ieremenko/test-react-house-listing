@@ -4,23 +4,27 @@ import BackToOverview from '../BackToOverwiev/BackToOverview'
 import Navbar from '../Navbar/Navbar'
 import { useFetch } from '../../hooks/useFetching'
 import HouseService from '../../API/Api'
+import validation from '../../utils/validation'
+
+const initialListing = () => ({
+    constructionYear: '',
+    description: '',
+    hasGarage: 'false',
+    streetName: '',
+    price: '',
+    bedrooms: '',
+    bathrooms: '',
+    size: '',
+    houseNumber: '',
+    numberAddition: '',
+    zip: '',
+    city: '',
+})
 
 const CreateListing = () => {
-    const [listing, setListing] = useState({
-        constructionYear: '',
-        description: '',
-        hasGarage: 'false',
-        streetName: '',
-        price: '',
-        bedrooms: '',
-        bathrooms: '',
-        size: '',
-        houseNumber: '',
-        numberAddition: '',
-        zip: '',
-        city: '',
-    })
+    const [listing, setListing] = useState(initialListing())
     const [file, setFile] = useState('')
+    const [validationErrors, setValidationErrors] = useState({})
     const url = 'https://api.intern.d-tt.nl/api/houses'
 
     const body = JSON.stringify({
@@ -44,6 +48,19 @@ const CreateListing = () => {
         }
     )
 
+    const [uploadPicture, isUploadLoading, isUploadError] = useFetch(
+        async (id) => {
+            await HouseService.uploadImage(
+                id,
+                url,
+                { 'X-Api-Key': process.env.REACT_APP_API_KEY },
+                body,
+                'POST',
+                file
+            )
+        }
+    )
+
     const {
         constructionYear,
         description,
@@ -58,13 +75,12 @@ const CreateListing = () => {
         city,
     } = listing
 
-    // const validListing = Object.values(listing).every(
-    //     (item) => !!item
-    // )
+    const { numberAddition: optional, ...rest } = listing
 
     const handleChange = (event) => {
         const name = event.target.name
         const value = event.target.value
+
         setListing({ ...listing, [name]: value })
     }
     const handleUpload = (e) => {
@@ -75,64 +91,23 @@ const CreateListing = () => {
     }
     const handleSubmit = async (event) => {
         event.preventDefault()
+
         try {
-            // let res = await fetch(
-            //     'https://api.intern.d-tt.nl/api/houses',
-            //     {
-            //         method: 'POST',
-            //         body: JSON.stringify({
-            //             ...listing,
-            //             hasGarage: listing.hasGarage === 'true',
-            //             constructionYear:
-            //                 listing.constructionYear.split('/')[2],
-            //         }),
-            //         headers: {
-            //             'X-Api-Key': process.env.REACT_APP_API_KEY,
-            //             'Content-Type': 'application/json',
-            //         },
-            //     }
-            // )
-            // let resJson = await res.json()
-            const newHouse = await createHouse()
+            setValidationErrors(validation(rest))
+            if (!Object.keys(validationErrors).length) {
+                const newHouse = await createHouse()
 
-            const formData = new FormData()
-            formData.append('image', file, file.name)
-
-            await fetch(
-                `https://api.intern.d-tt.nl/api/houses/${newHouse.id}/upload`,
-                {
-                    method: 'POST',
-                    body: formData,
-
-                    headers: {
-                        'X-Api-Key': process.env.REACT_APP_API_KEY,
-                    },
-                }
-            )
+                await uploadPicture(newHouse.id)
+            }
         } catch (e) {
             console.log('error')
         }
-        setListing({
-            constructionYear: '',
-            description: '',
-            hasGarage: 'false',
-            streetName: '',
-            price: '',
-            bedrooms: '',
-            bathrooms: '',
-            size: '',
-            houseNumber: '',
-            numberAddition: '',
-            zip: '',
-            city: '',
-        })
     }
 
     return (
         <div className={styles.containerFluid}>
             <Navbar />
             <div className={styles.container}>
-                {/*<Navbar />*/}
                 <BackToOverview />
                 <form
                     className={styles.createForm}
@@ -149,6 +124,11 @@ const CreateListing = () => {
                             value={streetName}
                             onChange={handleChange}
                         />
+                        {validationErrors.streetName && (
+                            <p className={styles.error}>
+                                {validationErrors.streetName}
+                            </p>
+                        )}
                         <div>
                             <label htmlFor="houseNumber">
                                 House number
@@ -161,6 +141,11 @@ const CreateListing = () => {
                                 value={houseNumber}
                                 onChange={handleChange}
                             />
+                            {validationErrors.houseNumber && (
+                                <p className={styles.error}>
+                                    {validationErrors.houseNumber}
+                                </p>
+                            )}
                             <label htmlFor="numberAddition">
                                 Additional(optional)
                             </label>
@@ -180,6 +165,11 @@ const CreateListing = () => {
                             value={zip}
                             onChange={handleChange}
                         />
+                        {validationErrors.zip && (
+                            <p className={styles.error}>
+                                {validationErrors.zip}
+                            </p>
+                        )}
                         <label htmlFor="city">City</label>
                         <input
                             type="text"
@@ -188,6 +178,11 @@ const CreateListing = () => {
                             value={city}
                             onChange={handleChange}
                         />
+                        {validationErrors.city && (
+                            <p className={styles.error}>
+                                {validationErrors.city}
+                            </p>
+                        )}
                         *
                         <label htmlFor="upload">Upload picture</label>
                         <input
@@ -204,6 +199,11 @@ const CreateListing = () => {
                             value={price}
                             onChange={handleChange}
                         />
+                        {validationErrors.price && (
+                            <p className={styles.error}>
+                                {validationErrors.price}
+                            </p>
+                        )}
                         <label htmlFor="size">Size</label>
                         <input
                             type="text"
@@ -212,6 +212,11 @@ const CreateListing = () => {
                             value={size}
                             onChange={handleChange}
                         />
+                        {validationErrors.size && (
+                            <p className={styles.error}>
+                                {validationErrors.size}
+                            </p>
+                        )}
                         <label htmlFor="hasGarage">Garage</label>
                         <select
                             name="hasGarage"
@@ -224,12 +229,22 @@ const CreateListing = () => {
                         </select>
                         <label htmlFor="bedrooms">Bedrooms</label>
                         <input
+                            className={
+                                validationErrors.bedrooms
+                                    ? styles.errorInput
+                                    : styles.inputField
+                            }
                             type="text"
                             id="bedrooms"
                             name="bedrooms"
                             value={bedrooms}
                             onChange={handleChange}
                         />
+                        {validationErrors.bedrooms && (
+                            <p className={styles.error}>
+                                {validationErrors.bedrooms}
+                            </p>
+                        )}
                         <label htmlFor="bathrooms">Bathrooms</label>
                         <input
                             type="text"
@@ -238,6 +253,11 @@ const CreateListing = () => {
                             value={bathrooms}
                             onChange={handleChange}
                         />
+                        {validationErrors.bathrooms && (
+                            <p className={styles.error}>
+                                {validationErrors.bathrooms}
+                            </p>
+                        )}
                         <label htmlFor="constructionYear">
                             Construction date
                         </label>
@@ -248,6 +268,11 @@ const CreateListing = () => {
                             value={constructionYear}
                             onChange={handleChange}
                         />
+                        {validationErrors.constructionYear && (
+                            <p className={styles.error}>
+                                {validationErrors.constructionYear}
+                            </p>
+                        )}
                         <label htmlFor="description">
                             Description
                         </label>
@@ -258,8 +283,18 @@ const CreateListing = () => {
                             value={description}
                             onChange={handleChange}
                         />
+                        {validationErrors.description && (
+                            <p className={styles.error}>
+                                {validationErrors.description}
+                            </p>
+                        )}
                     </div>
-                    <button type={styles.createButton}>create</button>
+                    <button
+                        type={styles.createButton}
+                        disabled={isCreateLoading || isUploadLoading}
+                    >
+                        create
+                    </button>
                 </form>
             </div>
         </div>

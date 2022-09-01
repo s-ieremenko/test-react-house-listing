@@ -1,13 +1,19 @@
 import React, { useState } from 'react'
 import styles from './SearchBar.module.css'
 
-const SearchBar = () => {
+const SearchBar = ({ searchQuery, setSearchQuery }) => {
     return (
-        <div className={styles.searchInput}>
-            <input type="search" placeholder="search for a house" />
-            <button>price</button>
-            <button>size</button>
-        </div>
+        <form className={styles.searchForm}>
+            <input
+                type="text"
+                placeholder="search for a house"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <button type="button" onClick={() => setSearchQuery('')}>
+                &times;
+            </button>
+        </form>
     )
 }
 

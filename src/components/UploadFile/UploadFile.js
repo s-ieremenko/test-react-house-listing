@@ -25,7 +25,6 @@ const UploadFile = ({ listing, setListing }) => {
                 }
             )
             let resJson = await res.json()
-            console.log(resJson)
             // if (res.status === 200 || res.status === 201) {
             //     setHousesList([...housesList, listing])
             // }

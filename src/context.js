@@ -7,30 +7,26 @@ const AppContext = React.createContext()
 const AppProvider = ({ children }) => {
     const [houses, setHouses] = useState([])
     const url = `https://api.intern.d-tt.nl/api/houses`
-    // const urlForCreate = 'https://api.intern.d-tt.nl/api/houses'
     const headers = {
         'X-Api-Key': process.env.REACT_APP_API_KEY,
-        // 'Content-Type': 'application/json',
     }
     const [fetchHouses, isListingLoading, isError] = useFetch(
         async () => {
             const houses = await HouseService.getAll(url, headers)
             setHouses(houses)
+            return houses
         }
     )
     useEffect(() => {
         fetchHouses()
     }, [])
 
-    // const [fetchHouses, isLoading, error, houses] = useFetch(
-    //     url,
-    //     headers
-    // )
-
     return (
         <AppContext.Provider
             value={{
                 houses,
+                fetchHouses,
+                setHouses,
             }}
         >
             {children}

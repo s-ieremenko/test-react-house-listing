@@ -5,11 +5,14 @@ import styles from './HousePage.module.css'
 import Navbar from '../Navbar/Navbar'
 import House from '../House/House'
 import BackToOverview from '../BackToOverwiev/BackToOverview'
+import EditButtons from '../EditButtons/EditButtons'
+import Modal from '../Modal/Modal'
 
 const HousePage = () => {
     const { houses } = useGlobalContext()
     const [house, setHouse] = useState()
     const { id } = useParams()
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
     useEffect(() => {
         const newHouse = houses.find((house) => house.id === +id)
@@ -19,7 +22,6 @@ const HousePage = () => {
     if (house) {
         const {
             constructionYear,
-            createdAt,
             description,
             hasGarage,
             image,
@@ -29,7 +31,6 @@ const HousePage = () => {
             rooms: { bedrooms, bathrooms },
             size,
         } = house
-        console.log(house)
         const formattedPrice = `${Number(price).toLocaleString(
             'es-ES'
         )}`
@@ -40,7 +41,6 @@ const HousePage = () => {
                     {house ? (
                         <div className={styles.houseDetails}>
                             <BackToOverview />
-                            <input type="file" />
                             <div
                                 className={
                                     styles.descriptionContainer
@@ -83,6 +83,22 @@ const HousePage = () => {
                                         {description}
                                     </p>
                                 </div>
+                                {madeByMe && (
+                                    <EditButtons
+                                        setIsModalOpen={
+                                            setIsModalOpen
+                                        }
+                                        id={id}
+                                    />
+                                )}
+                                {isModalOpen && (
+                                    <Modal
+                                        id={+id}
+                                        setIsModalOpen={
+                                            setIsModalOpen
+                                        }
+                                    />
+                                )}
                             </div>
                         </div>
                     ) : (
