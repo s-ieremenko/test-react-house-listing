@@ -1,7 +1,6 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useCallback } from 'react'
 
 export const useFetch = (callback) => {
-    // const [houses, setHouses] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState('')
 
@@ -18,11 +17,6 @@ export const useFetch = (callback) => {
         },
         [callback]
     )
-    //
-    // useEffect(() => {
-    //     getHouses()
-    // }, [getHouses])
-    // return [getHouses, isLoading, error, houses]
 
     return [fetching, isLoading, error]
 }

@@ -10,11 +10,16 @@
 }
 
 .descriptionContainer p, .facilities, .moreFacilities {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
     margin: 10px 0;
 }
 
 .descriptionDetails {
     padding: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .descriptionText {
@@ -22,9 +27,10 @@
 }
 
 
-.houseDetails img {
+.houseDetails img, .noImage {
     width: 100%;
 }
+
 
 .facilities, .moreFacilities {
     display: flex;

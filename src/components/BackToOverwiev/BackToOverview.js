@@ -1,12 +1,19 @@
 import React from 'react'
-import styles from './BackToOverview.module.css'
 import { Link } from 'react-router-dom'
 
-const BackToOverview = () => {
+import styles from './BackToOverview.module.css'
+
+const BackToOverview = ({ type, id }) => {
     return (
         <div>
             <p className={styles.backToArrow}>
-                <Link to="/houses">Back to overview</Link>
+                {type === 'backToMainPage' ? (
+                    <Link to="/houses">Back to overview</Link>
+                ) : (
+                    <Link to={`/houses/${id}`}>
+                        Back to detailed page
+                    </Link>
+                )}
             </p>
         </div>
     )

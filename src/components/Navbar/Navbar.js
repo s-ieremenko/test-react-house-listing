@@ -1,7 +1,8 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
+
 import styles from '../Navbar/Navbar.module.css'
 import logo from '../../images/img_logo_dtt@3x.png'
-import { Link } from 'react-router-dom'
 
 const Navbar = () => {
     return (
@@ -10,14 +11,24 @@ const Navbar = () => {
                 <div className={styles.logoImg}>
                     <img src={logo} alt="dtt-logo" />
                 </div>
-                <ul className={styles.navList}>
-                    <li>
-                        <Link to="/houses">Houses</Link>
-                    </li>
-                    <li>
-                        <Link to="/about">About</Link>
-                    </li>
-                </ul>
+
+                <NavLink
+                    to="/houses"
+                    className={({ isActive }) =>
+                        isActive ? styles.linkActive : styles.link
+                    }
+                >
+                    Houses
+                </NavLink>
+
+                <NavLink
+                    to="/about"
+                    className={({ isActive }) =>
+                        isActive ? styles.linkActive : styles.link
+                    }
+                >
+                    About
+                </NavLink>
             </nav>
         </div>
     )

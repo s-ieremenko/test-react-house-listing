@@ -1,12 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+
 import { useGlobalContext } from '../../context'
 import styles from './HousePage.module.css'
 import Navbar from '../Navbar/Navbar'
-import House from '../House/House'
 import BackToOverview from '../BackToOverwiev/BackToOverview'
 import EditButtons from '../EditButtons/EditButtons'
 import Modal from '../Modal/Modal'
+import NoImage from '../../images/no-image.jpg'
 
 const HousePage = () => {
     const { houses } = useGlobalContext()
@@ -17,7 +18,7 @@ const HousePage = () => {
     useEffect(() => {
         const newHouse = houses.find((house) => house.id === +id)
         setHouse(newHouse)
-    }, [])
+    }, [houses])
 
     if (house) {
         const {
@@ -38,67 +39,84 @@ const HousePage = () => {
             <>
                 <Navbar />
                 <div className={styles.container}>
+                    <BackToOverview type="backToMainPage" />
                     {house ? (
                         <div className={styles.houseDetails}>
-                            <BackToOverview />
                             <div
                                 className={
                                     styles.descriptionContainer
                                 }
                             >
-                                <img src={image} alt={street} />
+                                {image ? (
+                                    <img src={image} alt={street} />
+                                ) : (
+                                    <img
+                                        className={styles.noImage}
+                                        src={NoImage}
+                                        alt="no-image"
+                                    />
+                                )}
                                 <div
                                     className={
                                         styles.descriptionDetails
                                     }
                                 >
-                                    <p>{street}</p>
-                                    <p className={styles.address}>
-                                        {zip} {city}
-                                    </p>
-                                    <ul className={styles.facilities}>
-                                        <li>{formattedPrice}</li>
-                                        <li>{size} m2</li>
-                                        <li>
-                                            Built in{' '}
-                                            {constructionYear}{' '}
-                                        </li>
-                                    </ul>
-                                    <ul
-                                        className={
-                                            styles.moreFacilities
-                                        }
-                                    >
-                                        <li>{bedrooms}</li>
-                                        <li>{bathrooms} m2</li>
-                                        <li>
-                                            {hasGarage ? 'Yes' : 'No'}{' '}
-                                        </li>
-                                    </ul>
-                                    <p
-                                        className={
-                                            styles.descriptionText
-                                        }
-                                    >
-                                        {description}
-                                    </p>
+                                    <div>
+                                        <h1>{street}</h1>
+                                        <p className={styles.address}>
+                                            {zip} {city}
+                                        </p>
+                                        <ul
+                                            className={
+                                                styles.facilities
+                                            }
+                                        >
+                                            <li>{formattedPrice}</li>
+                                            <li>{size} m2</li>
+                                            <li>
+                                                Built in{' '}
+                                                {constructionYear}{' '}
+                                            </li>
+                                        </ul>
+                                        <ul
+                                            className={
+                                                styles.moreFacilities
+                                            }
+                                        >
+                                            <li>{bedrooms}</li>
+                                            <li>{bathrooms} m2</li>
+                                            <li>
+                                                {hasGarage
+                                                    ? 'Yes'
+                                                    : 'No'}{' '}
+                                            </li>
+                                        </ul>
+                                        <p
+                                            className={
+                                                styles.descriptionText
+                                            }
+                                        >
+                                            {description}
+                                        </p>
+                                    </div>
+
+                                    {madeByMe && (
+                                        <EditButtons
+                                            setIsModalOpen={
+                                                setIsModalOpen
+                                            }
+                                            id={id}
+                                        />
+                                    )}
+                                    {isModalOpen && (
+                                        <Modal
+                                            id={+id}
+                                            setIsModalOpen={
+                                                setIsModalOpen
+                                            }
+                                        />
+                                    )}
                                 </div>
-                                {madeByMe && (
-                                    <EditButtons
-                                        setIsModalOpen={
-                                            setIsModalOpen
-                                        }
-                                        id={id}
-                                    />
-                                )}
-                                {isModalOpen && (
-                                    <Modal
-                                        id={+id}
-                                        setIsModalOpen={
-                                            setIsModalOpen
-                                        }
-                                    />
-                                )}
                             </div>
                         </div>
                     ) : (

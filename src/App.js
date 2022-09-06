@@ -1,10 +1,8 @@
-import './App.css';
-import MainPage from "./components/MainPage/MainPage";
+import './App.css'
+import MainPage from './components/MainPage/MainPage'
 
 function App() {
-  return (
-    <MainPage/>
-  );
+    return <MainPage />
 }
 
-export default App;
+export default App

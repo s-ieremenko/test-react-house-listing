@@ -1,0 +1,131 @@
+
+.formWrapper {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.formControl input, .formControl select {
+    width: 100%;
+    padding: 10px 10px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #cfcfcf;
+    box-sizing: border-box
+}
+
+.formControl label {
+    display: block;
+    font-size: 0.8em;
+    margin-bottom: 0.50em;
+    color: #222;
+    font-weight: lighter;
+}
+
+.formControl div {
+    margin-bottom: 10px
+}
+
+
+.createButton {
+    cursor: pointer;
+    background: #EB5440;
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    color: #FFFFFF;
+    border-radius: 10px;
+    padding: 8px 40px;
+    border: none;
+}
+
+.formButton {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 10px 0;
+}
+
+
+.houseNumber, .numberAddition, .size, .bathrooms, .bedrooms, .hasGarage {
+    width: 47%;
+}
+
+.city, .description, .zip, .streetName, .constructionYear, .price, .sizeField {
+    width: 100%;
+}
+
+.houseNumber {
+    margin-right: 3%;
+}
+
+.numberAddition {
+    margin-left: 3%;
+}
+
+.houseNumberField, .sizeField, .bedroomsField {
+    display: flex;
+    justify-content: space-between;
+}
+
+.formControl input[type="file"] {
+    padding: 44px 67px;
+    opacity: 0;
+    cursor: pointer;
+    width: 45%;
+
+}
+
+.labelContainer {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.uploadLabel:before {
+    content: "";
+    position: absolute;
+    top: 22%;
+    width: 128px;
+    height: 104px;
+    cursor: pointer;
+    background-image: repeating-linear-gradient(-27deg, #dad7d7, #dad7d7 14px, transparent 14px, transparent 25px, #dad7d7 25px), repeating-linear-gradient(63deg, #dad7d7, #dad7d7 14px, transparent 14px, transparent 25px, #dad7d7 25px), repeating-linear-gradient(153deg, #dad7d7, #dad7d7 14px, transparent 14px, transparent 25px, #dad7d7 25px), repeating-linear-gradient(243deg, #dad7d7, #dad7d7 14px, transparent 14px, transparent 25px, #dad7d7 25px);
+    background-size: 3px 100%, 100% 3px, 3px 100%, 100% 3px;
+    background-position: 0 0, 0 0, 100% 0, 0 100%;
+    background-repeat: no-repeat;
+}
+
+.uploadLabel:after {
+    content: "";
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    background: url("../../images/ic_upload@3x.png") no-repeat;
+    background-size: contain;
+    top: 58%;
+    left: 22%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.uploadContainer {
+    position: relative;
+}
+
+.upload {
+    width: 127px;
+}
+
+.error, .errorInput::placeholder {
+    color: red;
+    font-size: 11px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-style: italic;
+}
+
+.errorInput {
+    border: 1px solid red !important;
+}
+
+.error {
+    margin-top: 5px;
+}

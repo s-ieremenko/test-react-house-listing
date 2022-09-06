@@ -1,12 +1,12 @@
 .modalContainer {
     border-radius: 12px;
     background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.35);
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 40px;
+    padding: 40px 60px;
+    z-index: 5;
 }
 
 .modalBackground {
@@ -16,4 +16,36 @@
     position: fixed;
     top: 0;
     left: 0;
+}
+
+.modalContainer p {
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    padding-bottom: 20px;
+}
+
+.deleteButton, .goBackButton {
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    font-size: 16px;
+}
+
+.goBackButton {
+    background: #4A4B4C;
+
+}
+
+.deleteButton {
+    background: #EB5440;
+    margin-bottom: 25px;
+}
+
+.modalContainer h1 {
+    text-align: center;
 }

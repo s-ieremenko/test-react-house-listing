@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import styles from './House.module.css'
 import { Link } from 'react-router-dom'
+
+import styles from './House.module.css'
 import NoImage from '../../images/no-image.jpg'
 import EditButtons from '../EditButtons/EditButtons'
 import Modal from '../Modal/Modal'
@@ -10,10 +11,6 @@ const House = (props) => {
     const {
         house: {
             id,
-            constructionYear,
-            createdAt,
-            description,
-            hasGarage,
             image,
             location: { street, city, zip },
             madeByMe,
@@ -29,40 +26,42 @@ const House = (props) => {
 
     return (
         <article className={styles.houseContainer}>
-            <Link to={`/houses/${id}`}>
-                {image ? (
-                    <img src={image} alt="house" />
-                ) : (
-                    <img
-                        className={styles.noImage}
-                        src={NoImage}
-                        alt="no-image"
-                    />
-                )}
-            </Link>
-            <div>
+            <div className={styles.listingDetailsContainer}>
                 <Link to={`/houses/${id}`}>
-                    <p className={styles.address}>{street}</p>
+                    {image ? (
+                        <img src={image} alt="house" />
+                    ) : (
+                        <img
+                            className={styles.noImage}
+                            src={NoImage}
+                            alt="no-image"
+                        />
+                    )}
                 </Link>
-                <p className={styles.price}>{formattedPrice}</p>
-                <p>
-                    {zip} {city}
-                </p>
-                <ul className={styles.facilities}>
-                    <li>{bedrooms}</li>
-                    <li>{bathrooms}</li>
-                    <li>{size} m2</li>
-                </ul>
-                {madeByMe && (
-                    <EditButtons
-                        setIsModalOpen={setIsModalOpen}
-                        id={id}
-                    />
-                )}
-                {isModalOpen && (
-                    <Modal id={+id} setIsModalOpen={setIsModalOpen} />
-                )}
+                <div className={styles.listingDetails}>
+                    <Link to={`/houses/${id}`}>
+                        <p className={styles.address}>{street}</p>
+                    </Link>
+                    <p className={styles.price}>{formattedPrice}</p>
+                    <p className={styles.city}>
+                        {zip} {city}
+                    </p>
+                    <ul className={styles.facilities}>
+                        <li>{bedrooms}</li>
+                        <li>{bathrooms}</li>
+                        <li>{size} m2</li>
+                    </ul>
+                </div>
             </div>
+            {madeByMe && (
+                <EditButtons
+                    setIsModalOpen={setIsModalOpen}
+                    id={id}
+                />
+            )}
+            {isModalOpen && (
+                <Modal id={+id} setIsModalOpen={setIsModalOpen} />
+            )}
         </article>
     )
 }

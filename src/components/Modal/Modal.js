@@ -1,8 +1,7 @@
 import React, { useCallback, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { Link } from 'react-router-dom'
-import styles from './Modal.module.css'
 
+import { useNavigate } from 'react-router-dom'
+import styles from './Modal.module.css'
 import { useFetch } from '../../hooks/useFetching'
 import HouseService from '../../API/Api'
 import { useGlobalContext } from '../../context'
@@ -40,15 +39,20 @@ const Modal = ({ id, setIsModalOpen }) => {
     return (
         <div className={styles.modalBackground}>
             <div className={styles.modalContainer}>
-                <h3>Delete listing</h3>
+                <h1>Delete listing</h1>
                 <p>Are you sure you want to delete listing?</p>
                 <button
                     className={styles.deleteButton}
                     onClick={handleDelete}
                 >
-                    Delete
+                    Yes, delete
                 </button>
-                <button onClick={handleCancel}>Go back</button>
+                <button
+                    className={styles.goBackButton}
+                    onClick={handleCancel}
+                >
+                    Go back
+                </button>
             </div>
         </div>
     )

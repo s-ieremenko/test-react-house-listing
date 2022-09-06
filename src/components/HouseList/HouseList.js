@@ -1,29 +1,15 @@
-import React, {
-    useState,
-    useMemo,
-    useContext,
-    useEffect,
-} from 'react'
+import React, { useState, useMemo } from 'react'
+import { Link } from 'react-router-dom'
+
 import styles from './HouseList.module.css'
 import SearchBar from '../SearchBar/SearchBar'
-import { useFetch } from '../../hooks/useFetching'
 import House from '../House/House'
 import emptyHouses from '../../images/img_empty_houses@3x.png'
 import { ReactComponent as DescOrder } from '../../images/sort-desc.svg'
 import { ReactComponent as AscOrder } from '../../images/sort-asc.svg'
 import { useGlobalContext } from '../../context'
-import { Link } from 'react-router-dom'
 
 const HouseList = () => {
-    // const url = `https://api.intern.d-tt.nl/api/houses`
-    // const headers = {
-    //     'X-Api-Key': process.env.REACT_APP_API_KEY,
-    //     'Content-Type': 'application/json',
-    // }
-    // const [fetchHouses, isLoading, error, houses] = useFetch(
-    //     url,
-    //     headers
-    // )
     const { houses } = useGlobalContext()
     const [searchQuery, setSearchQuery] = useState('')
     const [sortField, setSortField] = useState('price')
@@ -73,7 +59,7 @@ const HouseList = () => {
         <main>
             <div className={styles.container}>
                 <header>
-                    <h2>Houses</h2>
+                    <h1>Houses</h1>
                     <div className={styles.createButton}>
                         <Link to="/houses/create">Create new</Link>
                     </div>
@@ -83,28 +69,12 @@ const HouseList = () => {
                         searchQuery={searchQuery}
                         setSearchQuery={setSearchQuery}
                     />
-                    {/*<form>*/}
-                    {/*    <input*/}
-                    {/*        type="text"*/}
-                    {/*        placeholder="search for a house"*/}
-                    {/*        value={searchQuery}*/}
-                    {/*        onChange={(e) =>*/}
-                    {/*            setSearchQuery(e.target.value)*/}
-                    {/*        }*/}
-                    {/*    />*/}
-                    {/*    <button*/}
-                    {/*        type="button"*/}
-                    {/*        onClick={() => setSearchQuery('')}*/}
-                    {/*    >*/}
-                    {/*        &times;*/}
-                    {/*    </button>*/}
-                    {/*</form>*/}
                     <div>
                         <button
                             className={styles.ascOrder}
                             onClick={() => handleOnClick('price')}
                         >
-                            <span>price</span>{' '}
+                            <span>Price</span>{' '}
                             {sortType === 'asc' &&
                             sortField === 'price' ? (
                                 <AscOrder />
@@ -117,7 +87,7 @@ const HouseList = () => {
                             className={styles.ascOrder}
                             onClick={() => handleOnClick('size')}
                         >
-                            <span>size</span>{' '}
+                            <span>Size</span>{' '}
                             {sortType === 'asc' &&
                             sortField === 'size' ? (
                                 <AscOrder />
