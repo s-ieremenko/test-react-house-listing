@@ -5,9 +5,9 @@ import styles from './Modal.module.css'
 import { useFetch } from '../../hooks/useFetching'
 import HouseService from '../../API/Api'
 import { useGlobalContext } from '../../context'
+import { url } from '../../constans'
 
 const Modal = ({ id, setIsModalOpen }) => {
-    const url = 'https://api.intern.d-tt.nl/api/houses'
     const headers = {
         'X-Api-Key': process.env.REACT_APP_API_KEY,
     }
