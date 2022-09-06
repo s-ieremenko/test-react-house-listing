@@ -16,13 +16,16 @@ const HouseList = () => {
     const [sortType, setSortType] = useState('asc')
 
     const sortList = (value) => {
-        const sortedList = [...houses].sort((a, b) => {
-            return sortType === 'desc'
-                ? b[value] - a[value]
-                : a[value] - b[value]
-        })
+        if (Array.isArray(houses)) {
+            const sortedList = [...houses].sort((a, b) => {
+                return sortType === 'desc'
+                    ? b[value] - a[value]
+                    : a[value] - b[value]
+            })
 
-        return sortedList
+            return sortedList
+        }
+        return []
     }
     const sortedHouses = useMemo(() => {
         return sortList(sortField)

@@ -7,6 +7,7 @@ import Navbar from '../Navbar/Navbar'
 import { useFetch } from '../../hooks/useFetching'
 import HouseService from '../../API/Api'
 import Form from '../Form/Form'
+import { url } from '../../constans'
 
 const initialListing = () => ({
     constructionYear: '',
@@ -27,7 +28,6 @@ const CreateListing = () => {
     const [listing, setListing] = useState(initialListing())
     const [file, setFile] = useState('')
     const navigate = useNavigate()
-    const url = 'https://api.intern.d-tt.nl/api/houses'
 
     const body = JSON.stringify({
         ...listing,
