@@ -2,7 +2,7 @@
 # routing internally.
 [[redirects]]
 from = "/*"
-to = "/index.html"
+to = "https://api.intern.d-tt.nl"
 status = 200
 
 [[headers]]
