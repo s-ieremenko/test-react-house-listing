@@ -2,6 +2,7 @@
   "name": "house-listing",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://api.intern.d-tt.nl/api",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
@@ -37,6 +38,7 @@
     ]
   },
   "devDependencies": {
+    "http-proxy-middleware": "^2.0.6",
     "prettier": "^2.7.1"
   }
 }
