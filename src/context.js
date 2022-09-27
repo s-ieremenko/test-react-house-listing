@@ -11,7 +11,11 @@ const AppProvider = ({ children }) => {
         'X-Api-Key': process.env.REACT_APP_API_KEY,
     }
     const [fetchHouses, isLoading, error] = useFetch(async () => {
-        const houses = await HouseService.getAll(url, headers)
+        const houses = await HouseService.getAll(
+            url,
+            headers,
+            'no-cors'
+        )
         setHouses(houses)
         return houses
     })
