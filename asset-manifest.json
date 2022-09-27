@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/https//s-ieremenko.github.io/test-react-house-listing/static/css/main.ff9246f7.css",
-    "main.js": "/https//s-ieremenko.github.io/test-react-house-listing/static/js/main.5ea4e4ee.js",
-    "static/media/img_background@3x.png": "/https//s-ieremenko.github.io/test-react-house-listing/static/media/img_background@3x.0bd2c9f3553711c6f7bf.png",
-    "static/media/img_empty_houses@3x.png": "/https//s-ieremenko.github.io/test-react-house-listing/static/media/img_empty_houses@3x.2ce9cb8d8f2e06b96b23.png",
-    "static/media/no-image.jpg": "/https//s-ieremenko.github.io/test-react-house-listing/static/media/no-image.161fcce85c949fe3d7ee.jpg",
-    "index.html": "/https//s-ieremenko.github.io/test-react-house-listing/index.html",
-    "static/media/sort-asc.svg": "/https//s-ieremenko.github.io/test-react-house-listing/static/media/sort-asc.f19fd4a51fbd36a62897f68735713b13.svg",
-    "static/media/sort-desc.svg": "/https//s-ieremenko.github.io/test-react-house-listing/static/media/sort-desc.187a077be41fa37494297cbd067937f4.svg",
-    "main.ff9246f7.css.map": "/https//s-ieremenko.github.io/test-react-house-listing/static/css/main.ff9246f7.css.map",
-    "main.5ea4e4ee.js.map": "/https//s-ieremenko.github.io/test-react-house-listing/static/js/main.5ea4e4ee.js.map"
+    "main.css": "/test-react-house-listing/static/css/main.c383d36d.css",
+    "main.js": "/test-react-house-listing/static/js/main.d946184d.js",
+    "static/media/img_background@3x.png": "/test-react-house-listing/static/media/img_background@3x.0bd2c9f3553711c6f7bf.png",
+    "static/media/img_empty_houses@3x.png": "/test-react-house-listing/static/media/img_empty_houses@3x.2ce9cb8d8f2e06b96b23.png",
+    "static/media/no-image.jpg": "/test-react-house-listing/static/media/no-image.161fcce85c949fe3d7ee.jpg",
+    "static/media/sort-asc.svg": "/test-react-house-listing/static/media/sort-asc.f19fd4a51fbd36a62897f68735713b13.svg",
+    "static/media/sort-desc.svg": "/test-react-house-listing/static/media/sort-desc.187a077be41fa37494297cbd067937f4.svg",
+    "index.html": "/test-react-house-listing/index.html",
+    "main.c383d36d.css.map": "/test-react-house-listing/static/css/main.c383d36d.css.map",
+    "main.d946184d.js.map": "/test-react-house-listing/static/js/main.d946184d.js.map"
   },
   "entrypoints": [
-    "static/css/main.ff9246f7.css",
-    "static/js/main.5ea4e4ee.js"
+    "static/css/main.c383d36d.css",
+    "static/js/main.d946184d.js"
   ]
 }
