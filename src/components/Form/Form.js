@@ -59,6 +59,7 @@ const Form = ({
 
         try {
             setValidationErrors(validation(rest))
+            console.log(Object.keys(validation(rest)))
             if (!Object.keys(validation(rest)).length) {
                 if (type === 'create') {
                     handleCreate()

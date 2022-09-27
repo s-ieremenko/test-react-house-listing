@@ -8,7 +8,6 @@ import HouseService from '../../API/Api'
 import styles from '../CreateListing/CreateListing.module.css'
 import Navbar from '../Navbar/Navbar'
 import BackToOverview from '../BackToOverwiev/BackToOverview'
-import { url } from '../../constans'
 
 const initialListing = () => ({
     constructionYear: '',
