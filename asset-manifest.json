@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/test-react-house-listing/static/css/main.c383d36d.css",
-    "main.js": "/test-react-house-listing/static/js/main.d946184d.js",
-    "static/media/img_background@3x.png": "/test-react-house-listing/static/media/img_background@3x.0bd2c9f3553711c6f7bf.png",
-    "static/media/img_empty_houses@3x.png": "/test-react-house-listing/static/media/img_empty_houses@3x.2ce9cb8d8f2e06b96b23.png",
-    "static/media/no-image.jpg": "/test-react-house-listing/static/media/no-image.161fcce85c949fe3d7ee.jpg",
-    "static/media/sort-asc.svg": "/test-react-house-listing/static/media/sort-asc.f19fd4a51fbd36a62897f68735713b13.svg",
-    "static/media/sort-desc.svg": "/test-react-house-listing/static/media/sort-desc.187a077be41fa37494297cbd067937f4.svg",
-    "index.html": "/test-react-house-listing/index.html",
-    "main.c383d36d.css.map": "/test-react-house-listing/static/css/main.c383d36d.css.map",
-    "main.d946184d.js.map": "/test-react-house-listing/static/js/main.d946184d.js.map"
+    "main.css": "/static/css/main.04ac3665.css",
+    "main.js": "/static/js/main.968d8833.js",
+    "static/media/img_background@3x.png": "/static/media/img_background@3x.0bd2c9f3553711c6f7bf.png",
+    "static/media/img_empty_houses@3x.png": "/static/media/img_empty_houses@3x.2ce9cb8d8f2e06b96b23.png",
+    "static/media/no-image.jpg": "/static/media/no-image.161fcce85c949fe3d7ee.jpg",
+    "static/media/sort-asc.svg": "/static/media/sort-asc.f19fd4a51fbd36a62897f68735713b13.svg",
+    "static/media/sort-desc.svg": "/static/media/sort-desc.187a077be41fa37494297cbd067937f4.svg",
+    "index.html": "/index.html",
+    "main.04ac3665.css.map": "/static/css/main.04ac3665.css.map",
+    "main.968d8833.js.map": "/static/js/main.968d8833.js.map"
   },
   "entrypoints": [
-    "static/css/main.c383d36d.css",
-    "static/js/main.d946184d.js"
+    "static/css/main.04ac3665.css",
+    "static/js/main.968d8833.js"
   ]
 }
